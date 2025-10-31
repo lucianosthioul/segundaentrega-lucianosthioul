@@ -48,7 +48,7 @@ Dentro del proyecto veras los siguientes archivos y carpetas:
 
 Todos estos comandos se corren desde la raiz del proyecto, desde la terminal:
 
-| Command                   | Action                                           |
+| Comandos                  | Accion                                           |
 | :------------------------ | :----------------------------------------------- |
 | `npm install`             | Instala dependencias (astro, tailwind, fonts)    |
 | `npm run dev`             | Comienza el server local dev en `localhost:4321` |
