@@ -62,7 +62,7 @@ const renderStars = (rating: number) => {
                 
                 <div class="flex items-center gap-3">
                   <span class="w-28 font-semibold text-text-secondary text-sm uppercase tracking-wider">Género</span>
-                  <a href={`/catalogo.html?genero=${libro.genre}`} class="bg-gray-100 text-accent-hover font-medium px-3 py-1 rounded-full text-sm hover:bg-gray-200 transition-colors">
+                  <a href={`/catalogo?genero=${libro.genre}`} class="bg-gray-100 text-accent-hover font-medium px-3 py-1 rounded-full text-sm hover:bg-gray-200 transition-colors">
                     {libro.genre}
                   </a>
                 </div>
