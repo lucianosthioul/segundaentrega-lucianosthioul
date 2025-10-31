@@ -1,0 +1,28 @@
+---
+interface Props {
+  title: string;
+  id?: string;
+}
+
+const { title, id } = Astro.props;
+---
+
+<section id={id} class="carrusel-shell py-16 bg-gray">
+  <div class="wrapper-contenido">
+    <div class="flex justify-between items-center">
+      <h2 class="section-title mb-8 font-poppins text-text-primary">{title}</h2>
+      
+      <div class="flex gap-3">
+        <button class="carousel-prev carousel-control"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-next carousel-control"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+    
+    <div class="carousel-container overflow-x-auto overflow-y-hidden scrollbar-none scroll-smooth">
+      <div class="flex space-x-4">
+        <slot />
+      </div>
+    </div>
+  </div>
+</section>
+

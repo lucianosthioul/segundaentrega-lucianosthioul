@@ -1,0 +1,147 @@
+---
+import misterio from '../assets/images/coleccionmisterio.png';
+import cienciaficcion from '../assets/images/coleccioncienciaficcion.png';
+import clasicos from '../assets/images/colecciongigantes.png';
+import Layout from '../layouts/Layout.astro';
+import CarruselShell from '../components/CarruselShell.astro';
+import Libros from '../components/Libros.astro';
+import { todosLosLibros } from '../data/libros';
+import type { Libro } from '../data/libros';
+import AutorDelMes from '../components/AutorDelMes.astro';
+import { obtenerAutorActual } from '../data/autoresDelMes.ts';
+
+export const prerender = false;
+
+const base = import.meta.env.BASE_URL;
+
+function getIdsAleatorios(lista: Libro[], cantidad: number): number[] {
+  // Copia y baraja el array
+  const shuffled = [...lista].sort(() => 0.5 - Math.random());
+  
+  // Corta la cantidad deseada y devuelve solo los IDs
+  return shuffled.slice(0, cantidad).map(libro => libro.id);
+}
+
+// Genera las listas de IDs aleatorios
+const idsMasVendidos = getIdsAleatorios(todosLosLibros, 10);
+const idsRecomendados = getIdsAleatorios(todosLosLibros, 10);
+const autorActual = obtenerAutorActual();
+
+const libroDestacado = todosLosLibros[Math.floor(Math.random() * todosLosLibros.length)];
+---
+
+<Layout>
+	<!-- Contenido principal -->
+    <main>
+        <section class="wrapper-contenido section-padding">
+             <div class="stack-vertical md:flex-row items-center gap-12">
+                  <div class="md:w-1/2 text-center lg:text-left">
+                     <h1 class="page-title text-text-primary md:text-6xl leading-none mb-4 font-poppins">Descubre tu Próxima Gran Historia.</h1>
+                     <p class="page-subtitle mb-8 leading-relaxed font-poppins">Lee donde quieras, cuando quieras. Tu biblioteca personal, siempre contigo.</p>
+            
+                   <div class="wrapper-centrado flex-col lg:flex-row md:justify-start items-center lg:items-start gap-4">
+                     <a href="/catalogo" class="btn-primary font-poppins">Explorar Ahora</a>
+                     <a href="#masVendidos" class="btn-secondary-principal">Ver Novedades</a>
+                  </div>
+             </div>
+        
+        <div class="w-full md:w-1/2 flex items-center justify-center px-4 py-8 sm:px-6 md:px-0 md:py-0">
+            <a href={"/libro/" + libroDestacado.id} class="book-item transition-all duration-300 hover:scale-105 cursor-pointer block">
+                <img src={libroDestacado.cover} alt={libroDestacado.title} class="rounded-lg shadow-2xl w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 mx-auto" />
+            </a>
+        </div>
+        </section>
+        <CarruselShell title="Más Vendidos" id="masVendidos">
+             <Libros filter={idsMasVendidos} modo="carousel" />
+        </CarruselShell>
+
+        <CarruselShell title="Recomendados para ti">
+             <Libros filter={idsRecomendados} modo="carousel" />
+        </CarruselShell> 
+        <!-- Sección de categorías de libros -->
+        <section class="wrapper-contenido py-16">
+            <h2 class="section-title text-text-primary text-center mb-12 font-poppins">Explora por Categorías</h2>
+            
+            <!-- Grid de categorías -->
+            <div class="grid-items text-center">
+                <a href={`${base}catalogo?genero=Drama`} class="category-card">
+                    <i class="fas fa-mask category-card-icon"></i> 
+                    <h3 class="category-card-title">Drama</h3>
+                </a>
+                
+                <a href={`${base}catalogo?genero=Fantasía`} class="category-card">
+                    <i class="fas fa-dragon category-card-icon"></i>
+                    <h3 class="category-card-title">Fantasía</h3>
+                </a>
+                
+                <a href={`${base}catalogo?genero=Misterio`} class="category-card">
+                    <i class="fas fa-search category-card-icon"></i>
+                    <h3 class="category-card-title">Misterio</h3>
+                </a>
+                
+                <a href={`${base}catalogo?genero=Surrealismo`} class="category-card">
+                    <i class="fas fa-brain category-card-icon"></i> 
+                    <h3 class="category-card-title">Surrealismo</h3>
+                </a>
+            </div>
+        </section>
+        <!-- Sección de colecciones destacadas -->
+        <section class="wrapper-contenido section-padding">
+            <div class="section-header">
+                <h2 class="titulo-destacado text-text-primary font-poppins">Colecciones Destacadas</h2>
+                <p class="page-subtitle mt-4 font-poppins">Selecciones por nuestros editores para inspirar tu próxima lectura.</p>
+            </div>
+            
+            <!-- Grid de colecciones -->
+            <div class="contenido-apilado lg:grid-cols-3 gap-8">
+                <div class="collection-card group">
+                    <img src= {misterio.src} alt="Colección de Misterio" class="imagen-coleccion">
+                    <div class="collection-card-content">
+                        <h4 class="kicker-text text-accent uppercase font-poppins">Misterio</h4>
+                        <h3 class="sub-title text-text-primary mb-4 font-poppins">Noches en Vela</h3>
+                        <p class="text-text-terciary mb-4 font-poppins">Una selección de thrillers psicológicos que no podrás dejar de leer.</p>
+                        <a href={`${base}coleccion-misterio`} class="text-link font-poppins">Ver colección &rarr;</a>
+                    </div>
+                </div>
+                
+                <div class="collection-card group">
+                    <img src={cienciaficcion.src} alt="Colección de Ciencia Ficción" class="imagen-coleccion">
+                    <div class="collection-card-content">
+                        <h4 class="kicker-text text-accent uppercase font-poppins">Ciencia Ficción</h4>
+                        <h3 class="sub-title text-text-primary mb-3 font-poppins">Futuros Distópicos</h3>
+                        <p class="text-text-terciary mb-4 font-poppins">Explora sociedades del mañana que te harán cuestionar nuestro presente.</p>
+                        <a href={`${base}coleccion-ciencia-ficcion`} class="text-link font-poppins">Ver colección &rarr;</a>
+                    </div>
+                </div>
+                
+                <div class="collection-card group">
+                    <img src={clasicos.src} alt="Colección de Clásicos" class="imagen-coleccion">
+                    <div class="collection-card-content">
+                        <h4 class="kicker-text text-accent uppercase font-poppins">Literatura Clásica</h4>
+                        <h3 class="sub-title text-text-primary mb-3 font-poppins">Gigantes de la Literatura</h3>
+                        <p class="text-text-terciary mb-4 font-poppins">Las obras maestras atemporales que todo amante de la lectura debe conocer.</p>
+                        <a href={`${base}coleccion-clasicos`} class="text-link font-poppins">Ver colección &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>     
+        {autorActual && (
+        <AutorDelMes 
+             nombre={autorActual.nombre}
+             imagen={autorActual.imagen}
+             cita={autorActual.cita}
+             descripcion={autorActual.descripcion}
+        />
+         )}       
+        <!-- Sección de motivación -->
+        <section class="bg-accent">
+            <div class="wrapper-contenido py-16 text-center text-white">
+                <h2 class="titulo-destacado mb-4">¿Listo para encontrar tu próxima aventura?</h2>
+                <p class="p-introduccion mb-8">Con muchos títulos esperando ser descubiertos, tu próxima gran historia está a solo un clic de distancia.</p>
+                <a href={`${base}catalogo`} class="btn-inverted">Explorar el Catálogo Completo</a>
+            </div>
+        </section> 
+    </main>
+</Layout>
+
+<script src="../assets/js/carrusel.js"></script>

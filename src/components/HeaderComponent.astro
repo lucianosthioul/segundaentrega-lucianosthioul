@@ -1,0 +1,74 @@
+---
+import logo from '../assets/images/chiloebooks.png';
+import { menuItems } from '../data/ItemMenu.ts';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<!-- Header con navegación -->
+<header class="header">
+    <nav class="header-nav">
+        <!-- Logo de chiloebooks -->
+        <a href={base} class="sub-title text-text-primary flex items-center">
+            <img src={logo.src} alt="Logo de Chiloebooks" class="h-8 me-2">
+        </a>
+      
+        <!-- Botón hamburguesa -->
+        <button id="menu-btn"
+                class="md:hidden flex items-center justify-center w-10 h-10 rounded-full border border-gray-light text-text-terciary hover:bg-gray hover:border-gray-400 transition-colors duration-200 focus:outline-none">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
+                     
+        <!-- Menú de navegación -->
+        <ul class="hidden md:flex items-center gap-8">
+            {menuItems.map((item) => (
+                <li>
+                    <a 
+                        href={`${base}${item.href}`}
+                        class={item.isButton 
+                            ? "btn-header font-poppins"
+                            : "btn-header2 font-poppins"
+                        }
+                    >
+                        {item.text}
+                    </a>
+                </li>
+            ))}
+        </ul>
+    </nav>
+</header>
+
+<!-- Overlay del menú móvil -->
+<div id="menu-overlay"
+      class="fixed inset-0 bg-black/50 opacity-0 invisible transition-all duration-300 ease-in-out md:hidden z-40">
+</div>
+
+<!-- Menú móvil -->
+<div id="mobile-menu"
+     class="fixed top-0 right-0 w-48 h-full bg-white/90 backdrop-blur-md shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out md:hidden z-50">
+             
+    <!-- Header del menú -->
+    <div class="flex justify-between items-center p-4 border-b border-gray">
+        <span class="font-bold page-subtitle">Menú</span>
+        <button id="close-menu" class="nav-link">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+    </div>
+             
+    <!-- Lista de navegación -->
+    <ul class="stack-vertical p-4 space-y-4">
+        {menuItems.map((item) => (
+            <li class="text-right">
+                <a 
+                    href={`${base}${item.href}`}
+                    class={item.isButton
+                        ? "inline-block btn-header"
+                        : "block text-text-terciary hover:text-accent-hover text-base py-2 px-2 rounded transition-colors duration-200"
+                    }
+                >
+                    {item.text}
+                </a>
+            </li>
+        ))}
+    </ul>
+</div>

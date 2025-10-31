@@ -1,0 +1,30 @@
+---
+import '../styles/global.css' 
+import HeaderComponent from '../components/HeaderComponent.astro'
+import FooterComponent from '../components/FooterComponent.astro'
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Chiloebooks</title>
+		 <!-- Icono de la pestaña del navegador -->
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <!-- Librería de iconos Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+		
+	</head>
+	<body>
+		<HeaderComponent />
+		<slot />
+		<FooterComponent />
+
+		<script src="../assets/js/menu-movil.js"></script>
+		<script src="../assets/js/smooth.js"></script>
+	</body>
+</html>
+

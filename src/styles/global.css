@@ -1,0 +1,282 @@
+@import "tailwindcss";
+
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/700.css";
+
+@theme {
+  --font-poppins: 'Poppins', sans-serif;
+  
+  --color-text-primary: #1d1d1f;
+  --color-text-secondary: rgb(75, 85, 89);
+  --color-text-terciary: text-gray-700;
+  --color-accent: #2563EB;
+  --color-accent-hover: #1D4ED8;
+  --color-subtle: #f5f5f7;
+  --color-border: #e5e7eb;  
+  --color-gray: rgb(245,245,247);
+  --color-gray-light: #D1D5DB;  
+}
+
+body {
+  font-family: var(--font-poppins);
+  font-weight: 400;
+}
+
+#masVendidos {
+  scroll-margin-top: 100px;
+}
+
+/* Oculta la barra de scroll en navegadores WebKit (Chrome, Safari, Edge) */
+.carousel-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Oculta la barra de scroll en Firefox */
+.carousel-container {
+  scrollbar-width: none;
+  -ms-overflow-style: none; /* Para IE y Edge (versiones antiguas) */
+}
+
+@layer components {
+  /*
+   * CONTENEDORES Y SECCIONES
+   */
+
+  .contenido-apilado {
+    @apply grid grid-cols-1;
+  }
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+  .section-bg-subtle {
+    @apply bg-subtle;
+  }
+  .section-header {
+    @apply text-center max-w-2xl mx-auto mb-12;
+  }
+  .wrapper-contenido {
+    @apply container mx-auto px-6;
+  }
+  .wrapper-centrado {
+    @apply flex justify-center;
+  }
+  .stack-vertical {
+    @apply flex flex-col;
+  }
+
+  /*
+   * TÍTULOS Y TEXTO
+   */
+  .page-title {
+    @apply text-4xl font-bold;
+  }
+  .section-title {
+    @apply text-3xl font-bold;
+  }
+  .sub-title {
+    @apply text-2xl font-bold;
+  }
+  .page-subtitle {
+    @apply text-lg text-text-secondary;
+  }
+  .p-introduccion {
+    @apply text-lg opacity-90 max-w-2xl mx-auto;
+  }
+  .body-text {
+    @apply text-text-secondary leading-relaxed;
+  }
+  .kicker-text {
+    @apply text-sm font-semibold mb-2;
+  }
+  .blockquote {
+    @apply text-xl text-text-secondary italic border-l-4 border-accent pl-6 my-6;
+  }
+  .text-link {
+    @apply font-semibold text-accent transition-all duration-200 hover:text-accent-hover;
+  }
+  .grid-tarjetas {
+    @apply flex flex-wrap justify-center gap-8 mt-8 max-w-4xl mx-auto;
+  }
+  .titulo-destacado {
+    @apply text-4xl font-bold;
+  }
+  .item-contacto {
+    @apply text-text-terciary flex items-center justify-center md:justify-start;
+  }
+
+  /*
+   * BOTONES Y CONTROLES
+   */
+  .btn-header {
+    @apply bg-accent text-white text-sm font-semibold rounded-full hover:bg-accent-hover transition-all duration-200 px-4 py-2;
+  }
+  .btn-header2 {
+    @apply text-sm font-semibold text-text-primary hover:text-accent-hover transition-all duration-200;
+  }
+  .btn-primary {
+    @apply bg-accent text-white font-semibold px-6 py-3 rounded-full transition-all duration-300 hover:bg-accent-hover hover:scale-105 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105 border cursor-pointer;
+  }
+  .btn-secondary-principal {
+    @apply bg-gray-100 text-text-primary font-semibold px-6 py-3 rounded-full hover:bg-gray-light transition-all duration-300 hover:scale-105 font-poppins;
+  }
+  .btn-inverted {
+    @apply bg-white text-accent font-bold px-8 py-4 rounded-full transition-transform duration-300 hover:bg-gray-light hover:scale-105;
+  }
+  .carousel-control {
+    @apply bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-md transition-all duration-200 cursor-pointer hover:bg-gray-light;
+  }
+  .icono-social {
+    @apply text-accent hover:text-accent-hover transition-colors duration-300 text-2xl;
+  }
+
+  /*
+   * TARJETAS (CARDS)
+   */
+  .book-card {
+    @apply bg-white rounded-lg overflow-hidden shadow-sm transition-all duration-300 text-left cursor-pointer flex flex-col w-full hover:shadow-md;
+  }
+  .book-card-img-wrapper {
+    @apply aspect-[3/4] w-full overflow-hidden;
+  }
+  .book-card-img {
+    @apply w-full h-full object-cover transition-transform duration-300 group-hover:scale-105;
+  }
+  .book-card-content {
+    @apply p-4 text-center;
+  }
+  .book-card-title {
+    @apply font-bold text-text-primary text-sm truncate mb-1;
+  }
+  .book-card-author {
+    @apply text-xs text-text-secondary truncate;
+  }
+  .collection-card {
+    @apply bg-subtle rounded-lg overflow-hidden cursor-pointer;
+  }
+  .collection-card-content {
+    @apply p-6;
+  }
+  .category-card {
+    @apply block bg-subtle p-8 rounded-lg transition-all duration-300 text-center hover:bg-gray-light hover:-translate-y-1 cursor-pointer;
+  }
+  .category-card-icon {
+    @apply text-3xl text-accent mb-3;
+  }
+  .category-card-title {
+    @apply font-bold text-text-primary font-poppins;
+  }
+  .team-member-card {
+    @apply bg-subtle p-6 rounded-lg shadow-md flex flex-col items-center w-full sm:w-80;
+  }
+  .team-member-imagen {
+    @apply w-24 h-24 rounded-full object-cover mb-4 ring-2 ring-accent;
+  }
+  .imagen-contenido {
+    @apply rounded-lg shadow-xl mb-6 w-full h-auto object-cover aspect-video;
+  }
+  .imagen-coleccion {
+    @apply w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105
+  }
+
+  /*
+   * HEADER Y FOOTER
+   */
+  .header {
+    @apply border-b border-gray-light sticky top-0 bg-white/80 backdrop-blur-sm z-50;
+  }
+  .header-nav {
+    @apply container mx-auto px-6 py-4 flex justify-between items-center;
+  }
+  .nav-link {
+    @apply text-sm font-medium text-text-secondary transition-colors duration-200 hover:text-text-primary;
+  }
+  .footer {
+    @apply border-t border-gray-light;
+  }
+  .footer-content {
+    @apply container mx-auto px-6 py-8 text-center text-text-terciary text-sm;
+  }
+
+  /*
+   * BANNERS Y HÉROES
+   */
+  .hero-banner {
+    @apply relative bg-text-primary text-white h-80 flex items-center justify-center text-center;
+  }
+  .hero-banner-div {
+    @apply absolute inset-0;
+  }
+  .hero-banner-img {
+    @apply w-full h-full object-cover opacity-40;
+  }
+  .hero-banner-content {
+    @apply relative z-10 px-6;
+  }
+  .cta-banner-content {
+    @apply container mx-auto px-6 text-center;
+  }
+
+  /*
+   * FORMULARIOS
+   */
+  .form-input {
+    @apply w-full p-3 border border-gray-light rounded-lg transition-all focus:border-accent focus:ring-accent;
+  }
+
+  /*
+   * PÁGINA DE DETALLE
+   * Estilos para [id].astro
+   */
+
+  /* Kicker/Categoría (ej: "MISTERIO") */
+
+  /* Título del libro en la página de detalle */
+  .product-title {
+    @apply text-4xl md:text-5xl font-bold text-text-primary leading-tight;
+  }
+
+  /* Autor en la página de detalle */
+  .product-author {
+    @apply text-2xl text-accent mt-3 font-semibold;
+  }
+
+  .author-name {
+    @apply font-semibold text-xl text-text-primary mb-1;
+  }
+
+  /* Precio en la página de detalle */
+  .product-price {
+    @apply text-3xl font-bold text-text-primary mt-6;
+  }
+
+  /* Contenedor de botones de acción (comprar, lista) */
+  .product-actions {
+    @apply mt-8 flex flex-col sm:flex-row justify-center md:justify-start gap-4;
+  }
+
+  /* Descripción del producto */
+  .product-description {
+    @apply mt-6 leading-relaxed whitespace-pre-line;
+  }
+
+  /* Grid de detalles (páginas, idioma, etc.) */
+  .product-details-grid {
+    @apply grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-4 text-text-terciary text-[16px];
+  }
+
+  .grid-items {
+    @apply grid grid-cols-2 md:grid-cols-4 gap-6;
+  }
+  /* Etiqueta en el grid de detalles (ej: "Páginas") */
+  .product-details-label {
+    @apply font-semibold text-text-primary;
+  }
+
+  /* Divisor de sección en la página */
+  .product-section-divider {
+    @apply mt-16 pt-10 border-t border-gray-light;
+  }
+}

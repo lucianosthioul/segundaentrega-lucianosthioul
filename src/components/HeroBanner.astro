@@ -1,0 +1,19 @@
+---
+interface Props {
+    imageSrc: ImageMetadata; // Para imágenes importadas
+    title: string;
+    description: string;
+}
+
+const { imageSrc, title, description } = Astro.props;
+---
+<section class="hero-banner">
+    <div class="hero-banner-div">
+        <img src={imageSrc.src} alt={`Fondo para ${title}`} class="hero-banner-img">
+    </div>
+    
+    <div class="hero-banner-content">
+        <h1 class="page-title md:text-6xl leading-tight">{title}</h1>
+        <p class="p-introduccion md:text-xl mt-4">{description}</p>
+    </div>
+</section>

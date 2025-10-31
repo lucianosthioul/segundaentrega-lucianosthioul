@@ -1,0 +1,84 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+	<!-- Contenido principal de la página -->
+    <main>
+        <!-- Sección principal de contacto -->
+        <section class="wrapper-contenido section-padding max-w-4xl">
+            <h1 class="page-title text-text-primary md:text-5xl text-center mb-6">Contáctanos</h1>
+            <p class="page-subtitle text-center mb-12">¿Tienes preguntas, sugerencias o necesitas ayuda? Estamos aquí para escucharte.</p>
+            
+            <!-- Contenedor para mensajes de éxito/error (oculto inicialmente) -->
+            <div id="messageStatus" class="hidden mb-6 p-4 rounded-lg text-center"></div>
+            
+            <!-- Grid de dos columnas para formulario e información de contacto -->
+            <div class="contenido-apilado md:grid-cols-2 gap-12">
+                <!-- Columna 1: Formulario de contacto -->
+                <div class="bg-subtle p-8 rounded-lg shadow-lg">
+                    <h2 class="sub-title text-text-primary mb-6">Envíanos un Mensaje</h2>
+                    
+                    <!-- Formulario de contacto -->
+                    <form id="contactForm" class="space-y-6">
+                        <!-- Campo para el nombre -->
+                        <div>
+                            <label for="name" class="block kicker-text text-text-terciary">Nombre Completo *</label>
+                            <input type="text" id="name" name="name" required class="form-input" placeholder="Tu nombre">
+                        </div>
+                        
+                        <!-- Campo para el email -->
+                        <div>
+                            <label for="email" class="block kicker-text text-text-terciary">Correo Electrónico *</label>
+                            <input type="email" id="email" name="email" required class="form-input" placeholder="tu.email@ejemplo.com">
+                        </div>
+                        
+                        <!-- Campo para el asunto -->
+                        <div>
+                            <label for="subject" class="block kicker-text text-text-terciary">Asunto *</label>
+                            <input type="text" id="subject" name="subject" required class="form-input" placeholder="Sobre qué quieres hablar">
+                        </div>
+                        
+                        <!-- Campo para el mensaje -->
+                        <div>
+                            <label for="message" class="block kicker-text text-text-terciary">Mensaje *</label>
+                            <textarea id="message" name="message" rows="5" required class="form-input" placeholder="Escribe tu mensaje aquí..."></textarea>
+                        </div>
+                        
+                        <!-- Botón de envío del formulario -->
+                        <button type="submit" id="submitBtn" class="w-full btn-primary">
+                            <span id="submitText">Enviar Mensaje</span>
+                            <i id="submitIcon" class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Columna 2: Información de contacto y redes sociales -->
+                <div class="stack-vertical justify-center items-center md:items-start text-center md:text-left">
+                    <!-- Información de contacto -->
+                    <div class="mb-8">
+                        <h2 class="sub-title text-text-primary mb-4">Información de Contacto</h2>
+                        <p class="item-contacto mb-3"><i class="fas fa-envelope text-accent mr-3"></i> lucianoaaron.sthioul@alumnos.ulagos.cl</p>
+                        <p class="item-contacto mb-3"><i class="fas fa-phone-alt text-accent mr-3"></i> +56 9 7766 8899</p>
+                        <p class="item-contacto md:justify-start"><i class="fas fa-map-marker-alt text-accent mr-3"></i> Calle Eusebio Lillo 117</p>
+                    </div>
+
+                    <!-- Redes sociales -->
+                    <div>
+                        <h2 class="sub-title text-text-primary mb-4">Redes Sociales</h2>
+                        <div class="wrapper-centrado md:justify-start space-x-6">
+                            <a href="http://www.facebook.com" class="icono-social"><i class="fab fa-facebook-f"></i></a>
+                            <a href="http://www.x.com" class="icono-social"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.instagram.com" class="icono-social"><i class="fab fa-instagram"></i></a>
+                            <a href="http://www.linkedin.com" class="icono-social"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</Layout>
+
+<!-- Script para el manejo del formulario de contacto -->
+    <script src="../assets/js/mensaje.js"></script>

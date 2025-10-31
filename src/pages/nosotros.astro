@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import leyendo from '../assets/images/leyendo.png';
+import equipo from '../assets/images/equipo.png';
+import luciano from '../assets/images/luciano.jpg';
+import eva from '../assets/images/eva.jpg';
+---
+
+<Layout>
+	<!-- Contenido principal de la página -->
+    <main>
+        <!-- Sección principal "Nuestra Historia" -->
+        <section class="wrapper-contenido section-padding text-center max-w-4xl">
+            <h1 class="page-title text-text-primary md:text-5xl text-center mb-6">Nuestra Historia</h1>
+            <p class="page-subtitle mb-12">Desde nuestra fundación, Chiloebooks ha tenido una misión clara: acercar el mundo de la lectura a todos, en cualquier momento y lugar.</p>
+            
+            <!-- Grid de dos columnas para visión y compromiso -->
+            <div class="contenido-apilado md:grid-cols-2 gap-12 text-left items-start">
+                <!-- Columna 1: Visión -->
+                <div>
+                    <img src={leyendo.src} alt="Personas leyendo libros digitales" class="imagen-contenido">
+                    <h2 class="section-title text-text-primary mb-4">Nuestra Visión</h2>
+                    <p class="body-text">Creemos en el poder transformador de las historias. Visualizamos un futuro donde el conocimiento y la imaginación sean accesibles al instante, rompiendo barreras geográficas y temporales. Chiloebooks es más que una librería; es una puerta a infinitos mundos.</p>
+                </div>
+                
+                <!-- Columna 2: Compromiso -->
+                <div>
+                    <img src={equipo.src} alt="Equipo de Chiloebooks trabajando" class="imagen-contenido">
+                    <h2 class="section-title text-text-primary mb-4">Nuestro Compromiso</h2>
+                    <p class="body-text">Estamos comprometidos con la selección de una colección diversa y de alta calidad, apoyando tanto a autores consagrados como a nuevas voces. Nuestra plataforma está diseñada para ser intuitiva, segura y placentera, asegurando la mejor experiencia de lectura digital para nuestra comunidad.</p>
+                </div>
+            </div>
+
+            <!-- Sección del equipo -->
+            <div class="mt-24">
+                <h2 class="section-title text-text-primary mb-6">El Equipo Detrás de Chiloebooks</h2>
+                
+                <!-- Contenedor flexible para los miembros del equipo -->
+                <div class="grid-tarjetas">
+                    <!-- Tarjeta del miembro 1: Luciano -->
+                    <div class="team-member-card">
+                        <img src={luciano.src} alt="Foto de Luciano" class="team-member-imagen">
+                        <h3 class="author-name">Luciano Sthioul</h3>
+                        <p class="text-accent text-sm mb-3">Fundador</p>
+                        <p class="text-text-secondary text-center text-sm">Creador de Chiloebooks, con gusto por la tecnología y la literatura.</p>
+                    </div>
+                    
+                    <!-- Tarjeta del miembro 2: Eva -->
+                    <div class="team-member-card">
+                        <img src={eva.src} alt="Foto de Eva" class="team-member-imagen">
+                        <h3 class="author-name">Eva Leiva</h3>
+                        <p class="text-accent text-sm mb-3">Diseño</p>
+                        <p class="text-text-secondary text-center text-sm">Creativa y apasionada del diseño visual.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</Layout>
+

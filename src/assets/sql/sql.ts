@@ -1,0 +1,1 @@
+// RoleTable, Base de datos, Componente de tabla, funcion de desestructuracion
