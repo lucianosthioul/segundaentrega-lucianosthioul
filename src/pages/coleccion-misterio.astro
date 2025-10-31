@@ -1,7 +1,7 @@
 ---
 // src/pages/colecciones/coleccion-misterio.astro
 import Layout from '../layouts/Layout.astro';
-import HeroBanner from '../components/HeroBanner.astro';
+import Banner from '../components/Banner.astro';
 import Libros from '../components/Libros.astro';
 import atmosferamisterio from '../assets/images/misterio.png';
 
@@ -9,7 +9,7 @@ const librosDestacados = [2, 7, 8, 9, 10, 11];
 ---
 <Layout>
     <main>
-        <HeroBanner 
+        <Banner 
             imageSrc={atmosferamisterio}
             title="Noches en Vela"
             description="Una selección de thrillers psicológicos y misterios que no podrás dejar de leer."

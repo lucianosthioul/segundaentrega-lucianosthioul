@@ -85,7 +85,7 @@ body {
   .body-text {
     @apply text-text-secondary leading-relaxed;
   }
-  .kicker-text {
+  .text-formulario {
     @apply text-sm font-semibold mb-2;
   }
   .blockquote {
@@ -201,18 +201,18 @@ body {
   }
 
   /*
-   * BANNERS Y HÉROES
+   * BANNERS
    */
-  .hero-banner {
+  .banner {
     @apply relative bg-text-primary text-white h-80 flex items-center justify-center text-center;
   }
-  .hero-banner-div {
+  .banner-div {
     @apply absolute inset-0;
   }
-  .hero-banner-img {
+  .banner-img {
     @apply w-full h-full object-cover opacity-40;
   }
-  .hero-banner-content {
+  .banner-content {
     @apply relative z-10 px-6;
   }
   .cta-banner-content {
@@ -231,7 +231,7 @@ body {
    * Estilos para [id].astro
    */
 
-  /* Kicker/Categoría (ej: "MISTERIO") */
+  /* Categoría (ej: "MISTERIO") */
 
   /* Título del libro en la página de detalle */
   .product-title {

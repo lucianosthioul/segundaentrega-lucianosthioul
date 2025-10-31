@@ -2,13 +2,13 @@
 import atmosferaciencia from '../assets/images/cienciaficcion.png';
 import Layout from '../layouts/Layout.astro';
 import Libros from '../components/Libros.astro';
-import HeroBanner from '../components/HeroBanner.astro';
+import Banner from '../components/Banner.astro';
 const librosDestacados = [12, 13, 14, 1, 15, 16];
 ---
 <Layout>
 <!-- Contenido principal de la página -->
     <main>
-        <HeroBanner 
+        <Banner 
             imageSrc={atmosferaciencia}
             title="Futuros Distópicos"
             description="Una selección de historias de ciencia ficción que exploran futuros distópicos tan inquietantes como irresistibles."
