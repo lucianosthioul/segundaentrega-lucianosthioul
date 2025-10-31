@@ -16,7 +16,7 @@ Dentro del proyecto veras los siguientes archivos y carpetas:
 │   │   └── sql
 │   ├── components
 │   │   └── AutorDelMes.astro
-│   │   └── CarruselShell.astro
+│   │   └── CarruselEstructura.astro
 │   │   └── FooterComponent.astro
 │   │   └── HeaderComponent.astro
 │   │   └── Banner.astro

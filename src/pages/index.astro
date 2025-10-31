@@ -3,7 +3,7 @@ import misterio from '../assets/images/coleccionmisterio.png';
 import cienciaficcion from '../assets/images/coleccioncienciaficcion.png';
 import clasicos from '../assets/images/colecciongigantes.png';
 import Layout from '../layouts/Layout.astro';
-import CarruselShell from '../components/CarruselShell.astro';
+import CarruselEstructura from '../components/CarruselEstructura.astro';
 import Libros from '../components/Libros.astro';
 import { todosLosLibros } from '../data/libros';
 import type { Libro } from '../data/libros';
@@ -51,13 +51,13 @@ const libroDestacado = todosLosLibros[Math.floor(Math.random() * todosLosLibros.
             </a>
         </div>
         </section>
-        <CarruselShell title="Más Vendidos" id="masVendidos">
+        <CarruselEstructura title="Más Vendidos" id="masVendidos">
              <Libros filter={idsMasVendidos} modo="carousel" />
-        </CarruselShell>
+        </CarruselEstructura>
 
-        <CarruselShell title="Recomendados para ti">
+        <CarruselEstructura title="Recomendados para ti">
              <Libros filter={idsRecomendados} modo="carousel" />
-        </CarruselShell> 
+        </CarruselEstructura> 
         <!-- Sección de categorías de libros -->
         <section class="wrapper-contenido py-16">
             <h2 class="section-title text-text-primary text-center mb-12 font-poppins">Explora por Categorías</h2>
