@@ -61,29 +61,29 @@ const renderStars = (rating: number) => {
               <div class="mt-8 pt-6 border-t border-gray-light space-y-4">
                 
                 <div class="flex items-center gap-3">
-                  <span class="w-28 font-semibold text-text-secondary text-sm uppercase tracking-wider">Género</span>
+                  <span class="product-info">Género</span>
                   <a href={`/catalogo?genero=${libro.genre}`} class="bg-gray-100 text-accent-hover font-medium px-3 py-1 rounded-full text-sm hover:bg-gray-200 transition-colors">
                     {libro.genre}
                   </a>
                 </div>
                 
                 <div class="flex items-center gap-3">
-                  <span class="w-28 font-semibold text-text-secondary text-sm uppercase tracking-wider">Páginas</span>
+                  <span class="product-info">Páginas</span>
                   <span class="text-text-primary font-medium px-3">{libro.pages}</span>
                 </div>
 
                 <div class="flex items-center gap-3">
-                  <span class="w-28 font-semibold text-text-secondary text-sm uppercase tracking-wider">Editorial</span>
+                  <span class="product-info">Editorial</span>
                   <span class="text-text-primary font-medium px-3">{libro.publisher}</span>
                 </div>
 
                 <div class="flex items-center gap-3">
-                  <span class="w-28 font-semibold text-text-secondary text-sm uppercase tracking-wider">Publicación</span>
+                  <span class="product-info">Publicación</span>
                   <span class="text-text-primary font-medium px-3">{libro.publishDate}</span>
                 </div>
                 
                 <div class="flex items-center gap-3">
-                  <span class="w-28 font-semibold text-text-secondary text-sm uppercase tracking-wider">Idioma</span>
+                  <span class="product-info">Idioma</span>
                   <span class="text-text-primary font-medium px-3">{libro.language}</span>
                 </div>
 

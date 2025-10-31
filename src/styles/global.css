@@ -237,6 +237,10 @@ body {
   .product-title {
     @apply text-4xl md:text-5xl font-bold text-text-primary leading-tight;
   }
+  
+  .product-info {
+    @apply w-28 font-semibold text-text-secondary text-sm uppercase tracking-wider;
+  }
 
   /* Autor en la página de detalle */
   .product-author {
