@@ -19,7 +19,7 @@ Dentro del proyecto veras los siguientes archivos y carpetas:
 │   │   └── CarruselShell.astro
 │   │   └── FooterComponent.astro
 │   │   └── HeaderComponent.astro
-│   │   └── HeroBanner.astro
+│   │   └── Banner.astro
 │   │   └── Libros.astro
 │   ├── data
 │   │   └── autores.json
