@@ -1,13 +1,29 @@
-// Variables globales
-const searchInput = document.getElementById('searchInput');
-const genreFilter = document.getElementById('genreFilter');
-const sortSelect = document.getElementById('sortSelect');
-const booksGrid = document.getElementById('booksGrid');
-const noResults = document.getElementById('noResults');
+// 1. Declarar las variables aquí (sin asignar)
+let searchInput;
+let genreFilter;
+let sortSelect;
+let booksGrid;
+let noResults;
 let allBooks = [];
 
-// Inicializar al cargar la página
+// 2. Mover TODAS las asignaciones dentro del DOMContentLoaded
 document.addEventListener('DOMContentLoaded', function() {
+    // 3. Asignar las variables AQUÍ
+    searchInput = document.getElementById('searchInput');
+    genreFilter = document.getElementById('genreFilter');
+    sortSelect = document.getElementById('sortSelect');
+    booksGrid = document.getElementById('booksGrid');
+    noResults = document.getElementById('noResults');
+
+    // 4. Añadir "Guardias" (if) por si el script se carga en una página
+    //    que no tiene estos elementos (como index.astro)
+    
+    // Si no hay 'booksGrid', no podemos continuar.
+    if (!booksGrid) {
+        // console.log("Advertencia: No se encontró 'booksGrid'. El script de filtro no se ejecutará.");
+        return; 
+    }
+
     // Obtener todos los libros y almacenarlos
     allBooks = Array.from(document.querySelectorAll('.book-item'));
     
@@ -16,44 +32,49 @@ document.addEventListener('DOMContentLoaded', function() {
     const generoParam = urlParams.get('genero');
     const buscarParam = urlParams.get('buscar');
     
-    // Si hay un género en la URL, seleccionarlo
-    if (generoParam) {
+    // Si hay un género en la URL, seleccionarlo (con guardia)
+    if (generoParam && genreFilter) {
         genreFilter.value = generoParam;
     }
     
-    // Si hay un término de búsqueda en la URL, aplicarlo
-    if (buscarParam) {
+    // Si hay un término de búsqueda en la URL, aplicarlo (con guardia)
+    if (buscarParam && searchInput) {
         searchInput.value = buscarParam;
     }
     
-    // Agregar event listeners
-    searchInput.addEventListener('input', filterAndSortBooks);
-    genreFilter.addEventListener('change', filterAndSortBooks);
-    sortSelect.addEventListener('change', filterAndSortBooks);
+    // Agregar event listeners (con guardias)
+    if (searchInput) {
+        searchInput.addEventListener('input', filterAndSortBooks);
+    }
+    if (genreFilter) {
+        genreFilter.addEventListener('change', filterAndSortBooks);
+    }
+    if (sortSelect) {
+        sortSelect.addEventListener('change', filterAndSortBooks);
+    }
     
-    // Aplicar filtros iniciales (por si hay parámetros en la URL)
+    // Aplicar filtros iniciales
     filterAndSortBooks();
 });
 
 function filterAndSortBooks() {
-    const searchTerm = searchInput.value.toLowerCase().trim();
-    const selectedGenre = genreFilter.value;
-    const sortBy = sortSelect.value;
+    // Asegurarse de que las variables existen antes de usarlas
+    const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+    const selectedGenre = genreFilter ? genreFilter.value : '';
+    const sortBy = sortSelect ? sortSelect.value : '';
 
     // Filtrar libros
     let filteredBooks = allBooks.filter(book => {
         const title = book.dataset.title.toLowerCase();
         const author = book.dataset.author.toLowerCase();
-        const genres = book.dataset.genre; // Puede contener múltiples géneros
+        const genres = book.dataset.genre; 
 
-        // Verificar búsqueda por texto
         const matchesSearch = searchTerm === '' || 
             title.includes(searchTerm) || 
             author.includes(searchTerm);
 
-        // Verificar filtro por género (soporta múltiples géneros)
         const matchesGenre = selectedGenre === '' || 
-            genres.split(',').map(g => g.trim()).includes(selectedGenre);
+            (genres && genres.split(',').map(g => g.trim()).includes(selectedGenre));
 
         return matchesSearch && matchesGenre;
     });
@@ -81,21 +102,20 @@ function filterAndSortBooks() {
 }
 
 function displayBooks(books) {
+    // Si booksGrid o noResults no existen, no hacer nada.
+    if (!booksGrid || !noResults) return;
+
     // Limpiar el grid
     booksGrid.innerHTML = '';
 
     if (books.length === 0) {
-        // Mostrar mensaje de no resultados
         noResults.classList.remove('hidden');
         booksGrid.classList.add('hidden');
     } else {
-        // Ocultar mensaje de no resultados
         noResults.classList.add('hidden');
         booksGrid.classList.remove('hidden');
 
-        // Agregar libros filtrados al grid (clonar profundamente para mantener eventos)
         books.forEach(book => {
-            // Clonar profundamente para mantener la estructura completa
             const clonedBook = book.cloneNode(true);
             booksGrid.appendChild(clonedBook);
         });
@@ -103,9 +123,8 @@ function displayBooks(books) {
 }
 
 function resetFilters() {
-    searchInput.value = '';
-    genreFilter.value = '';
-    sortSelect.value = '';
+    if (searchInput) searchInput.value = '';
+    if (genreFilter) genreFilter.value = '';
+    if (sortSelect) sortSelect.value = '';
     displayBooks(allBooks);
 }
-
