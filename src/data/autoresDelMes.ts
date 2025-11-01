@@ -25,7 +25,7 @@ export interface AutorDelMes {
 interface RawAutor {
     mes: number;
     nombre: string;
-    imagen: string; // <-- El nombre del archivo
+    imagen: string;
     cita: string;
     descripcion: string;
 }
@@ -39,10 +39,10 @@ const imagenMap: Record<string, string> = {
 };
 
 // --- LÓGICA DE ENSAMBLAJE ---
-// 1. Le decimos a TypeScript que 'autoresData' es un array de 'RawAutor'
+// 'autoresData' es un array de 'RawAutor'
 const rawData: RawAutor[] = autoresData as RawAutor[];
 
-// 2. Mapeamos los datos crudos para crear el array final
+// 2. Mapeo los datos crudos para crear el array final
 export const autoresDelMes: AutorDelMes[] = rawData.map(rawAutor => {
     // Busca la *ruta* de la imagen usando el nombre de archivo del JSON
     const imagenPath = imagenMap[rawAutor.imagen];
@@ -51,7 +51,7 @@ export const autoresDelMes: AutorDelMes[] = rawData.map(rawAutor => {
         ...rawAutor,
         // Reemplaza el string 'imagen' (ej: "david.jpg") 
         // con el string de la ruta procesada
-        imagen: imagenPath || rawAutor.imagen, // Si no se encuentra, usa el string como fallback
+        imagen: imagenPath || rawAutor.imagen, 
     };
 });
 
@@ -64,13 +64,13 @@ export function obtenerAutorActual(): AutorDelMes | null {
     // Primero, intenta encontrar el autor para el mes actual
     const autorEncontrado = autoresDelMes.find(autor => autor.mes === mesActual);
     
-    // Si se encuentra, devuélvelo.
+    // Si se encuentra, lo devuelve.
     if (autorEncontrado) {
         return autorEncontrado;
     }
     
     // Si no (por ejemplo, es un mes sin autor), 
-    // devuelve el primer autor de la lista como fallback.
+    // se devuelve el primer autor de la lista como fallback.
     // Si la lista está vacía, devuelve null.
     return autoresDelMes[0] || null;
 }

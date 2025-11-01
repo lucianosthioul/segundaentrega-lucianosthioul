@@ -2,17 +2,14 @@
 import librosData from './libros.json'; // Importa los datos crudos del JSON
 
 // --- INTERFACES ---
-/**
- * Interfaz para los datos *finales* que usará tu aplicación.
- * 'cover' será un string con la ruta procesada a la imagen.
- */
+
 export interface Libro {
   id: number;
   title: string;
   author: string;
   genre: string;
   price: string;
-  cover: string; // <-- Solo 'string', simple y directo.
+  cover: string; 
   description: string;
   rating: number;
   pages: number;
@@ -31,7 +28,7 @@ interface RawLibro {
   author: string;
   genre: string;
   price: string;
-  cover: string; // <-- La diferencia clave
+  cover: string; 
   description: string;
   rating: number;
   pages: number;
@@ -101,10 +98,10 @@ const coverMap: Record<string, string> = {
 };
 
 // --- LÓGICA DE ENSAMBLAJE ---
-// 1. Le decimos a TypeScript que 'librosData' es un array de 'RawLibro'
+// 'librosData' es un array de 'RawLibro'
 const rawData: RawLibro[] = librosData as RawLibro[];
 
-// 2. Mapeamos los datos crudos para crear el array final
+// 2. Mapeo los datos crudos para crear el array final
 export const todosLosLibros: Libro[] = rawData.map(rawLibro => {
   // Busca la *ruta* de la imagen usando el nombre de archivo del JSON
   const coverImagePath = coverMap[rawLibro.cover]; 
@@ -112,8 +109,8 @@ export const todosLosLibros: Libro[] = rawData.map(rawLibro => {
   return {
     ...rawLibro,
     // Reemplaza el string 'cover' (ej: "broma.jpg") 
-    // con el string de la ruta procesada (ej: '/_astro/broma.aB1cD2.jpg')
-    cover: coverImagePath || rawLibro.cover, // Si no se encuentra, usa el string como fallback
+    // con el string de la ruta procesada
+    cover: coverImagePath || rawLibro.cover, 
   };
 });
 
