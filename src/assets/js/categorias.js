@@ -1,4 +1,4 @@
-// 1. Declaro las variables sin asignar
+// Declaracion de variables sin asignar
 let searchInput;
 let genreFilter;
 let sortSelect;
@@ -6,24 +6,22 @@ let booksGrid;
 let noResults;
 let allBooks = [];
 
-
 document.addEventListener('DOMContentLoaded', function() {
-    // 3. Asigno las variables aqui
+    // Asignacion de variables
     searchInput = document.getElementById('searchInput');
     genreFilter = document.getElementById('genreFilter');
     sortSelect = document.getElementById('sortSelect');
     booksGrid = document.getElementById('booksGrid');
     noResults = document.getElementById('noResults');
 
-    // 4. Añado if por si el script se carga en una página
+    // Añado Ifs por si el script se carga en una página
     //    que no tiene estos elementos (como index.astro)
-    
-    // Si no hay 'booksGrid', no puedo continuar.
+
     if (!booksGrid) {
         return; 
     }
 
-    // Obtener todos los libros y almacenarlos
+    // Obtiene todos los libros y los almacena
     allBooks = Array.from(document.querySelectorAll('.book-item'));
     
     // Verificar si hay parámetros en la URL
@@ -31,17 +29,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const generoParam = urlParams.get('genero');
     const buscarParam = urlParams.get('buscar');
     
-    // Si hay un género en la URL, seleccionarlo
+    // Si hay un género en la URL, se selecciona con if
     if (generoParam && genreFilter) {
         genreFilter.value = generoParam;
     }
     
-    // Si hay un término de búsqueda en la URL, aplicarlo
+    // Si hay un término de búsqueda en la URL, se aplica con if
     if (buscarParam && searchInput) {
         searchInput.value = buscarParam;
     }
     
-    // Agregar event listeners
+    // Event listeners
     if (searchInput) {
         searchInput.addEventListener('input', filterAndSortBooks);
     }
@@ -52,17 +50,17 @@ document.addEventListener('DOMContentLoaded', function() {
         sortSelect.addEventListener('change', filterAndSortBooks);
     }
     
-    // Aplicar filtros iniciales
+    // Aplica filtros iniciales
     filterAndSortBooks();
 });
 
 function filterAndSortBooks() {
-    // Me aseguro de que las variables existen antes de usarlas
+    // Se asegura de que las variables existen antes de usarlas
     const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
     const selectedGenre = genreFilter ? genreFilter.value : '';
     const sortBy = sortSelect ? sortSelect.value : '';
 
-    // Filtro libros
+    // Filtrar libros
     let filteredBooks = allBooks.filter(book => {
         const title = book.dataset.title.toLowerCase();
         const author = book.dataset.author.toLowerCase();

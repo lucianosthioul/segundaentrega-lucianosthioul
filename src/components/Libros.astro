@@ -43,7 +43,7 @@ const libros = filter && filter.length > 0
             
             // OPCIÓN A: Con 'centerLastRow={true}' (para [id].astro y colecciones)
             <div 
-                id="booksGrid"
+                id="booksGrid_flex"
                 class="
                     flex flex-wrap justify-center -m-2 
                     lg:grid lg:grid-cols-5 xl:grid-cols-6 lg:gap-4 lg:m-0
@@ -74,7 +74,7 @@ const libros = filter && filter.length > 0
 
             // OPCIÓN B: Por defecto (para catalogo.astro)
             <div 
-                id="booksGrid_grid"
+                id="booksGrid"
                 class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4"
             >
                 {libros.map((libro) => (
