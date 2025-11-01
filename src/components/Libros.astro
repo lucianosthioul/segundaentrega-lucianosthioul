@@ -4,9 +4,10 @@ import { todosLosLibros } from '../data/libros.ts';
 interface Props {
   filter?: number[];
   modo?: "carousel" | "grid";
+  centerLastRow?: boolean;
 }
 
-const { filter, modo = "grid" } = Astro.props;
+const { filter, modo = "grid", centerLastRow = false } = Astro.props;
 
 const libros = filter && filter.length > 0
     ? todosLosLibros.filter(libro => filter.includes(libro.id))
@@ -37,27 +38,62 @@ const libros = filter && filter.length > 0
     ))
 ) : (
     // Modo grid: con contenedor grid
-    <div 
-        id="booksGrid"
-        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4"
-    >
-        {libros.map((libro) => (
-            <a 
-                href={`/libro/${libro.id}`}
-                class="book-item book-card group flex flex-col"
-                data-title={libro.title}
-                data-author={libro.author}
-                data-genre={libro.genre}
-                data-price={libro.price}
+    <>
+        {centerLastRow ? (
+            
+            // OPCIÓN A: Con 'centerLastRow={true}' (para [id].astro y colecciones)
+            <div 
+                id="booksGrid"
+                class="
+                    flex flex-wrap justify-center -m-2 
+                    lg:grid lg:grid-cols-5 xl:grid-cols-6 lg:gap-4 lg:m-0
+                "
             >
-                <div class="aspect-[3/4] w-full overflow-hidden rounded-lg">
-                    <img src={libro.cover} alt={libro.title} class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
-                </div>
-                <div class="book-card-content flex-grow pt-3">
-                    <h3 class="font-bold text-text-primary text-sm line-clamp-2 mb-1">{libro.title}</h3>
-                    <p class="text-xs text-text-terciary line-clamp-1">{libro.author}</p>
-                </div>
-            </a>
-        ))}
-    </div>
+                {libros.map((libro) => (
+                    
+                    <div class="w-1/2 sm:w-1/3 md:w-1/4 p-2 lg:w-auto lg:p-0">
+                    
+                        <a 
+                            href={`/libro/${libro.id}`}
+                            class="book-item book-card group flex flex-col h-full"
+                            data-title={libro.title} data-author={libro.author} data-genre={libro.genre} data-price={libro.price}
+                        >
+                            <div class="aspect-[3/4] w-full overflow-hidden rounded-lg">
+                                <img src={libro.cover} alt={libro.title} class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
+                            </div>
+                            <div class="book-card-content flex-grow pt-3">
+                                <h3 class="font-bold text-text-primary text-sm line-clamp-2 mb-1">{libro.title}</h3>
+                                <p class="text-xs text-text-terciary line-clamp-1">{libro.author}</p>
+                            </div>
+                        </a>
+                    </div>
+                ))}
+            </div>
+
+        ) : (
+
+            // OPCIÓN B: Por defecto (para catalogo.astro)
+            <div 
+                id="booksGrid_grid"
+                class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4"
+            >
+                {libros.map((libro) => (
+                    <a 
+                        href={`/libro/${libro.id}`}
+                        class="book-item book-card group flex flex-col"
+                        data-title={libro.title} data-author={libro.author} data-genre={libro.genre} data-price={libro.price}
+                    >
+                        <div class="aspect-[3/4] w-full overflow-hidden rounded-lg">
+                            <img src={libro.cover} alt={libro.title} class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
+                        </div>
+                        <div class="book-card-content flex-grow pt-3">
+                            <h3 class="font-bold text-text-primary text-sm line-clamp-2 mb-1">{libro.title}</h3>
+                            <p class="text-xs text-text-terciary line-clamp-1">{libro.author}</p>
+                        </div>
+                    </a>
+                ))}
+            </div>
+            
+        )}
+    </>
 )}

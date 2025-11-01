@@ -44,45 +44,45 @@ const renderStars = (rating: number) => {
       {/* --- SECCIÓN PRINCIPAL --- */}
       <section class="section-padding font-poppins bg-gray-50">
         <div class="wrapper-contenido max-w-6xl">
-          <div class="contenido-apilado md:grid-cols-12 gap-12 lg:gap-16 items-start">
+          <div class="contenido-apilado lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             {/* Columna de la portada */}
-            <div class="md:col-span-4 lg:col-span-3 wrapper-centrado">
-              <img src={libro.cover} alt={`Portada de ${libro.title}`} class="rounded-lg shadow-2xl w-full max-w-xs md:max-w-full"/>
+            <div class="lg:col-span-3 wrapper-centrado">
+              <img src={libro.cover} alt={`Portada de ${libro.title}`} class="rounded-lg shadow-2xl w-full max-w-xs lg:max-w-full"/>
             </div>
             {/* Columna de la información */}
-            <div class="md:col-span-8 lg:col-span-9 text-center md:text-left">
+            <div class="lg:col-span-9 text-center lg:text-left">
               <h1 class="product-title">{libro.title}</h1>
               <p class="product-author">{libro.author}</p>
-              <div class="wrapper-centrado md:justify-start items-center gap-2 mt-4">
+              <div class="wrapper-centrado lg:justify-start items-center gap-2 mt-4">
                 <div class="flex" set:html={renderStars(libro.rating)} />
                 <span class="text-text-terciary text-sm">({libro.rating.toFixed(1)})</span>
               </div>
               <p class="product-price">{precioFormateado}</p>
               <div class="mt-8 pt-6 border-t border-gray-light space-y-4">
                 
-                <div class="flex items-center gap-3">
+                <div class="flex items-center justify-center lg:justify-start gap-3">
                   <span class="product-info">Género</span>
                   <a href={`/catalogo?genero=${libro.genre}`} class="bg-gray-100 text-accent-hover font-medium px-3 py-1 rounded-full text-sm hover:bg-gray-200 transition-colors">
                     {libro.genre}
                   </a>
                 </div>
                 
-                <div class="flex items-center gap-3">
+                <div class="flex items-center justify-center lg:justify-start gap-3">
                   <span class="product-info">Páginas</span>
                   <span class="text-text-primary font-medium px-3">{libro.pages}</span>
                 </div>
 
-                <div class="flex items-center gap-3">
+                <div class="flex items-center justify-center lg:justify-start gap-3">
                   <span class="product-info">Editorial</span>
                   <span class="text-text-primary font-medium px-3">{libro.publisher}</span>
                 </div>
 
-                <div class="flex items-center gap-3">
+                <div class="flex items-center justify-center lg:justify-start gap-3">
                   <span class="product-info">Publicación</span>
                   <span class="text-text-primary font-medium px-3">{libro.publishDate}</span>
                 </div>
                 
-                <div class="flex items-center gap-3">
+                <div class="flex items-center justify-center lg:justify-start gap-3">
                   <span class="product-info">Idioma</span>
                   <span class="text-text-primary font-medium px-3">{libro.language}</span>
                 </div>
@@ -95,7 +95,7 @@ const renderStars = (rating: number) => {
 
       {/* --- DESCRIPCIÓN --- */}
       <section class="section-padding font-poppins bg-white">
-        <div class="wrapper-contenido max-w-6xl">
+        <div class="wrapper-contenido max-w-6xl text-center lg:text-left">
           <h2 class="section-title text-text-primary mb-6">Descripción</h2>
           <p class="page-subtitle product-description">{libro.description}</p>
         </div>
@@ -105,8 +105,8 @@ const renderStars = (rating: number) => {
       {idsSugeridos.length > 0 && (
         <section class="section-padding font-poppins bg-gray-50">
           <div class="wrapper-contenido max-w-6xl">
-            <h2 class="section-title text-text-primary mb-8">También te podría interesar</h2>
-            <Libros filter={idsSugeridos} modo="grid" />
+            <h2 class="section-title text-text-primary mb-8 text-center lg:text-left">También te podría interesar</h2>
+            <Libros filter={idsSugeridos} modo="grid" centerLastRow={true} />
           </div>
         </section>
       )}
