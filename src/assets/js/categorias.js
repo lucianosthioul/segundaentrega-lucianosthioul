@@ -1,4 +1,4 @@
-// 1. Declarar las variables aquí (sin asignar)
+// 1. Declaro las variables sin asignar
 let searchInput;
 let genreFilter;
 let sortSelect;
@@ -6,21 +6,20 @@ let booksGrid;
 let noResults;
 let allBooks = [];
 
-// 2. Mover TODAS las asignaciones dentro del DOMContentLoaded
+
 document.addEventListener('DOMContentLoaded', function() {
-    // 3. Asignar las variables AQUÍ
+    // 3. Asigno las variables aqui
     searchInput = document.getElementById('searchInput');
     genreFilter = document.getElementById('genreFilter');
     sortSelect = document.getElementById('sortSelect');
     booksGrid = document.getElementById('booksGrid');
     noResults = document.getElementById('noResults');
 
-    // 4. Añadir "Guardias" (if) por si el script se carga en una página
+    // 4. Añado if por si el script se carga en una página
     //    que no tiene estos elementos (como index.astro)
     
-    // Si no hay 'booksGrid', no podemos continuar.
+    // Si no hay 'booksGrid', no puedo continuar.
     if (!booksGrid) {
-        // console.log("Advertencia: No se encontró 'booksGrid'. El script de filtro no se ejecutará.");
         return; 
     }
 
@@ -32,17 +31,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const generoParam = urlParams.get('genero');
     const buscarParam = urlParams.get('buscar');
     
-    // Si hay un género en la URL, seleccionarlo (con guardia)
+    // Si hay un género en la URL, seleccionarlo
     if (generoParam && genreFilter) {
         genreFilter.value = generoParam;
     }
     
-    // Si hay un término de búsqueda en la URL, aplicarlo (con guardia)
+    // Si hay un término de búsqueda en la URL, aplicarlo
     if (buscarParam && searchInput) {
         searchInput.value = buscarParam;
     }
     
-    // Agregar event listeners (con guardias)
+    // Agregar event listeners
     if (searchInput) {
         searchInput.addEventListener('input', filterAndSortBooks);
     }
@@ -58,12 +57,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function filterAndSortBooks() {
-    // Asegurarse de que las variables existen antes de usarlas
+    // Me aseguro de que las variables existen antes de usarlas
     const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
     const selectedGenre = genreFilter ? genreFilter.value : '';
     const sortBy = sortSelect ? sortSelect.value : '';
 
-    // Filtrar libros
+    // Filtro libros
     let filteredBooks = allBooks.filter(book => {
         const title = book.dataset.title.toLowerCase();
         const author = book.dataset.author.toLowerCase();
@@ -102,7 +101,7 @@ function filterAndSortBooks() {
 }
 
 function displayBooks(books) {
-    // Si booksGrid o noResults no existen, no hacer nada.
+    // Si booksGrid o noResults no existen, no hace nada.
     if (!booksGrid || !noResults) return;
 
     // Limpiar el grid
